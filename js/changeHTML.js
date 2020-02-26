@@ -14,11 +14,17 @@ $(function () {
 //プレイヤーにソースの割り当て
 function setSource() {
 	var player = videojs($("#Videojs-id").get(0));
-	player.src({
-		//src: `data:application/vnd.apple.mpegurl;base64,${btoa(nowPlayListData.join('\n'))}`,
-		src: sessionStorage.getItem("playlistURL"),
-		type: "application/x-mpegurl",
-	});
+	if (videojs.browser.IS_SAFARI) {
+		player.src({
+			src: `data:application/vnd.apple.mpegurl;base64,${btoa(nowPlayListData.join('\n'))}`,
+			type: "application/x-mpegurl",
+		});
+	} else {
+		player.src({
+			src: sessionStorage.getItem("playlistURL"),
+			type: "application/x-mpegurl",
+		});
+	}
 	addMessage("プレイリストを更新");
 	//現在のプレイリストを表示 コンソールとHTML内に表示
 	console.log(nowPlayListData);
