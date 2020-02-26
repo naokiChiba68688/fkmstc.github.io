@@ -27,7 +27,9 @@ peer.on('connection', dataConnection => {
 
 
 function getJsonPlayList() {
-	$.getJSON("./hls/" + myid + ".json", function (data) {
+	//https://raw.githubusercontent.com/fkmstc/fkmstc.github.io/master/hls/peer2.json
+	$.getJSON(`https://raw.githubusercontent.com/fkmstc/fkmstc.github.io/master/hls/${myid}.json`, function (data) {
+	//$.getJSON("./hls/" + myid + ".json", function (data) {
 		jsonPlayList = data;
 		var promise = [];
 		for (i = 0; i < jsonPlayList.objectList.length; i++) {
@@ -50,7 +52,8 @@ function getJsonPlayList() {
 			}
 		}
 		Promise.all(promise).then(function () {
-			getm3u8File("./hls/BasePlayList.m3u8")
+			getm3u8File("https://raw.githubusercontent.com/fkmstc/fkmstc.github.io/master/hls//BasePlayList.m3u8")
+			//getm3u8File("./hls/BasePlayList.m3u8")
 				.then(function () {
 					for(i = 0; i < jsonPlayList.objectList.length; i++){
 						console.log(jsonPlayList.objectList[i].tsFileName + ":" + sessionStorage.getItem(jsonPlayList.objectList[i].tsFileName))
