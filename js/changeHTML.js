@@ -15,8 +15,8 @@ $(function () {
 function setSource() {
 	var player = videojs($("#Videojs-id").get(0));
 	player.src({
-		src: `data:application/vnd.apple.mpegurl;base64,${btoa(nowPlayListData.join('\n'))}`,
-		//src: sessionStorage.getItem("playlistURL"),
+		//src: `data:application/vnd.apple.mpegurl;base64,${btoa(nowPlayListData.join('\n'))}`,
+		src: sessionStorage.getItem("playlistURL"),
 		type: "application/x-mpegurl",
 	});
 	addMessage("プレイリストを更新");
