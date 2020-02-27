@@ -30,3 +30,8 @@ p {
 	background-color: azure;
 	font-size: 12px;
 }
+
+.video-js{
+	width: 480px;
+	height: 270px;
+}
