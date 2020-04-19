@@ -31,6 +31,7 @@ function m3u8Parse(data) {
 		if (data[i].indexOf("#") == -1) {
 			//保存したURLを取得，URLをプレイリストにセット
 			data[i] = sessionStorage.getItem(jsonPlayList.objectList[jsonNum].tsFileName);
+			console.log("get:" + jsonPlayList.objectList[jsonNum].tsFileName)
 			jsonNum++;
 		}
 	}
