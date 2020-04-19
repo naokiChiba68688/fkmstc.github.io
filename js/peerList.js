@@ -33,8 +33,8 @@ function getJsonPlayList() {
 			ローカル/Github変更ポイント
 			
 			*/
-	//$.getJSON(`https://raw.githubusercontent.com/fkmstc/fkmstc.github.io/master/hls/${myid}.json`, function (data) {
-	$.getJSON("./hls/" + myid + ".json", function (data) {
+	$.getJSON(`https://raw.githubusercontent.com/fkmstc/fkmstc.github.io/master/hls/${myid}.json`, function (data) {
+	//$.getJSON("./hls/" + myid + ".json", function (data) {
 		jsonPlayList = data;
 		var promise = [];
 		for (i = 0; i < jsonPlayList.objectList.length; i++) {
@@ -64,8 +64,8 @@ function getJsonPlayList() {
 			ローカル/Github変更ポイント
 
 			*/
-			//getm3u8File("https://raw.githubusercontent.com/fkmstc/fkmstc.github.io/master/hls//BasePlayList.m3u8")
-			getm3u8File("./hls/BasePlayList.m3u8")
+			getm3u8File("https://raw.githubusercontent.com/fkmstc/fkmstc.github.io/master/hls//BasePlayList.m3u8")
+			//getm3u8File("./hls/BasePlayList.m3u8")
 				.then(function () {
 					for(i = 0; i < jsonPlayList.objectList.length; i++){
 						console.log(jsonPlayList.objectList[i].tsFileName + ":" + sessionStorage.getItem(jsonPlayList.objectList[i].tsFileName))
