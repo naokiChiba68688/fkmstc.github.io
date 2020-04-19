@@ -28,6 +28,11 @@ peer.on('connection', dataConnection => {
 
 function getJsonPlayList() {
 	//https://raw.githubusercontent.com/fkmstc/fkmstc.github.io/master/hls/peer2.json
+			/*
+
+			ローカル/Github変更ポイント
+			
+			*/
 	$.getJSON(`https://raw.githubusercontent.com/fkmstc/fkmstc.github.io/master/hls/${myid}.json`, function (data) {
 	//$.getJSON("./hls/" + myid + ".json", function (data) {
 		jsonPlayList = data;
@@ -41,7 +46,9 @@ function getJsonPlayList() {
 			var tsFileName = jsonPlayList.objectList[i].tsFileName;
 			var folderName = tsFileName.substring(0, tsFileName.indexOf("_"));
 			var folderURL = "./hls/" + folderName + "/" + tsFileName;
-			//console.log("tsFileName:" + tsFileName + "\n" +"folderName:" + folderName + "\n" +"folderURL:" + folderURL);
+			
+			console.log("tsFileName:" + tsFileName + "\n" +"folderName:" + folderName + "\n" +"folderURL:" + folderURL);
+			
 			if ("Server" === jsonPlayList.objectList[i].URL) {
 				//サーバからtsファイルを取得
 				promise.push(gettsfile(folderURL, tsFileName));
@@ -52,6 +59,11 @@ function getJsonPlayList() {
 			}
 		}
 		Promise.all(promise).then(function () {
+			/*
+
+			ローカル/Github変更ポイント
+
+			*/
 			getm3u8File("https://raw.githubusercontent.com/fkmstc/fkmstc.github.io/master/hls//BasePlayList.m3u8")
 			//getm3u8File("./hls/BasePlayList.m3u8")
 				.then(function () {
