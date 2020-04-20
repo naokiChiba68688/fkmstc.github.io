@@ -47,7 +47,7 @@ function getJsonPlayList() {
 			var folderName = tsFileName.substring(0, tsFileName.indexOf("_"));
 			//var folderURL = "./hls/" + folderName + "/" + tsFileName;
 			
-			var folderURL =  "https://github.com/fkmstc/fkmstc.github.io/blob/master/hls/5min/5min_" + tsFileName + ".ts?raw=true"
+			var folderURL =  "https://github.com/fkmstc/fkmstc.github.io/blob/master/hls/5min/5min_" + tsFileName + "?raw=true"
 
 			console.log("tsFileName:" + tsFileName + "\n" +"folderName:" + folderName + "\n" +"folderURL:" + folderURL);
 			
