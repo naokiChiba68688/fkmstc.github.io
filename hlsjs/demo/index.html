@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>hls.js demo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+    <script type="text/javascript" src="./js/hls.js"></script>
+    <script type="text/javascript" src="./js/skywayEdit.js"></script>
+    <script type="text/javascript" src="./js/editHLSjs.js"></script>
+
+
+</head>
+
+<body>
+    <input type="text" id="input-my-id">
+    <button onclick="setMyID()">IDをセット</button><br>
+    <span id="ID" style="font-size: 2em;">ID:</span><br>
+
+    <button onclick="video.play()">動画を再生</button>
+    <br>
+
+    <div class="boxContainer">
+        <video id="video" controls autoplay class="videoCentered box"></video>
+        <p id="info" class="box"></span>
+    </div>
+
+</body>
+
+
+<script>
+
+
+    $('#info').on('change', '.add', function () {
+        console.log("チェンジ")
+    });
+
+    var peer;
+    var USERJSON;
+    var count = 0;
+    var i;
+    var id;
+    //idをセット
+    function setMyID() {
+        id = $("#input-my-id").val()
+        $("#ID").text(`ID:${id}`)
+        //skywayをセット
+        peer = new Peer(id, { key: '12811376-9405-4d0c-bc52-1c95a4f4703f', debug: 3 });
+        PeerDataReceiveFunction();
+
+        //tsファイルを探すカウントアップを初期化、DOM表示も初期化
+        count = 0;
+        $("#info").text("")
+
+        //idに対応したjsonファイルを取得
+        $.getJSON(`./json/${id}.json`, function (data) {
+            USERJSON = data;
+            //hlsjsの設定へ -> editHLSjs
+            newHls()
+        });
+    }
+
+    $(document).ready(function() {
+    $('#info').on('DOMSubtreeModified propertychange', function() {
+        $('#info').scrollTop($('#info').get(0).scrollHeight);
+    });
+});
+</script>
+
+</html>
