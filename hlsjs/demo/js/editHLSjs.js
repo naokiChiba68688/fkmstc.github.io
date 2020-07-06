@@ -87,12 +87,19 @@ function newHls() {
 		hls.attachMedia(video);
 
 		function onLevelLoaded(event, data) {
+			console.log(hls.levels);
 			var level_duration = data.details;
 			console.log(level_duration)
 		}
-		// subscribe event
-		hls.on(Hls.Events.LEVEL_LOADED, onLevelLoaded);
-		hls.on(Hls.Events.LEVEL_PTS_UPDATED, onLevelLoaded);
 
+		function onBufferLoaded(event, data){
+			console.log(data.frag.relurl);
+		}
+
+
+		// subscribe event
+		//hls.on(Hls.Events.LEVEL_LOADED, onLevelLoaded);
+		//hls.on(Hls.Events.LEVEL_PTS_UPDATED, onLevelLoaded);
+		hls.on(Hls.Events.FRAG_LOADED , onBufferLoaded);
 	}
 };
