@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+
+<body>
+    <input type="text" id="address">
+    <button onclick="set()">セット</button><br>
+    <video id="video" controls autoplay style="width: 300px;"></video>
+</body>
+<script>
+    function set() {
+        var ip = document.getElementById("address").value;
+        var video = document.getElementById('video');
+        var videoSrc = `http://${ip}:8080/live/hello.m3u8`;
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                //video.play();
+            });
+        }
+    }
+
+</script>
+
+</html>
