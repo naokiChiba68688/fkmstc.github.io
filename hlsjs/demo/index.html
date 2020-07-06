@@ -32,21 +32,21 @@
 
 
 <script>
-
-
-    $('#info').on('change', '.add', function () {
-        console.log("チェンジ")
-    });
-
+    //skywayのP2Pをするためのオブジェクト
     var peer;
+    //プレイリストの内容
     var USERJSON;
     var count = 0;
     var i;
+
+    //skyway用のID
     var id;
     //idをセット
     function setMyID() {
         id = $("#input-my-id").val()
         $("#ID").text(`ID:${id}`)
+
+        
         //skywayをセット
         peer = new Peer(id, { key: '12811376-9405-4d0c-bc52-1c95a4f4703f', debug: 3 });
         PeerDataReceiveFunction();
@@ -63,11 +63,14 @@
         });
     }
 
-    $(document).ready(function() {
-    $('#info').on('DOMSubtreeModified propertychange', function() {
-        $('#info').scrollTop($('#info').get(0).scrollHeight);
+
+    
+    $(document).ready(function () {
+        $('#info').on('DOMSubtreeModified propertychange', function () {
+            $('#info').scrollTop($('#info').get(0).scrollHeight);
+        });
     });
-});
+    
 </script>
 
 </html>
