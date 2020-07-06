@@ -13,6 +13,7 @@ sequenceDiagram
 		peer8->>peer8: JSONファイルをもとに<br>チャンクのURLを変更
 		alt JSON[URL] is Server
 		peer8->>Server: チャンクを要求
+		Server->>Server: チャンクを<br>要求した事をメモ
 		Server-->>peer8: チャンクを取得
 		else else
 		peer8->>peer5: チャンクを要求
