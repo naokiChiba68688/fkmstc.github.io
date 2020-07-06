@@ -17,10 +17,17 @@ function newHls() {
 						}
 					}
 
+
+
 					//サーバなら
 					if (USERJSON[count].URL == "Server") {
 						console.log("サーバからデータを取得")
 						//console.log(context)
+
+						peer.listAllPeers(peers => {
+							console.log(peers)
+						});
+
 
 						//アクセス先のURLを動的変更
 						context.url = `./hls/${USERJSON[count].dirName}/${USERJSON[count].tsFileName}`;
@@ -47,6 +54,11 @@ function newHls() {
 
 					//peerなら
 					if (USERJSON[count].URL != "Server") {
+						
+						peer.listAllPeers(peers => {
+							console.log(peers)
+						});
+
 						//data[0:相手のpeerid][1:tsファイル名][2:自分のpeerid]
 						PeerDataSendFunction([USERJSON[count].URL, USERJSON[count].tsFileName, id])
 							.then(function () {
@@ -56,6 +68,7 @@ function newHls() {
 					}
 
 					this.abort = function () {
+						console.log("ここに失敗したときの処理を書く")
 						load(context, config, callbacks);
 					};
 				}
@@ -64,8 +77,8 @@ function newHls() {
 
 
 		var hls = new Hls({
-			"debug": true,
-			//"debug": false,
+			//"debug": true,
+			"debug": false,
 			fLoader: fLoader
 		});
 		var video = document.getElementById('video');
@@ -75,7 +88,7 @@ function newHls() {
 
 		function onLevelLoaded(event, data) {
 			var level_duration = data.details;
-			console.log(level_duration)
+			//console.log(level_duration)
 		}
 		// subscribe event
 		hls.on(Hls.Events.LEVEL_LOADED, onLevelLoaded);

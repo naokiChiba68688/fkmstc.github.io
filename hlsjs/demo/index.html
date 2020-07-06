@@ -46,7 +46,7 @@
         id = $("#input-my-id").val()
         $("#ID").text(`ID:${id}`)
 
-        
+
         //skywayをセット
         peer = new Peer(id, { key: '12811376-9405-4d0c-bc52-1c95a4f4703f', debug: 3 });
         PeerDataReceiveFunction();
@@ -59,18 +59,20 @@
         $.getJSON(`./json/${id}.json`, function (data) {
             USERJSON = data;
             //hlsjsの設定へ -> editHLSjs
-            newHls()
+            peer.on('open', function () {
+                newHls()
+            })
         });
     }
 
 
-    
+
     $(document).ready(function () {
         $('#info').on('DOMSubtreeModified propertychange', function () {
             $('#info').scrollTop($('#info').get(0).scrollHeight);
         });
     });
-    
+
 </script>
 
 </html>
