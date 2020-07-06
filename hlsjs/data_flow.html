@@ -1,0 +1,101 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
+	<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+	<script>mermaid.initialize({ startOnLoad: true });</script>
+</head>
+
+<body>
+	<H2>標準</H2>
+	<hr>
+	<div class="mermaid">
+		sequenceDiagram
+		HLS.js->>Server: プレイリストを要求
+		Server-->>HLS.js: プレイリストを取得
+		HLS.js->>HLS.js: プレイリストを解析
+		loop チャンクがなくなるまで
+		HLS.js->>Server: チャンクを要求
+		Server-->>HLS.js: チャンクを取得
+		HLS.js->>HLS.js: 受け取ったチャンクを<br>bufferに格納
+		end
+	</div>
+	<h2>変更</h2>
+	<hr>
+	<div class="mermaid">
+		sequenceDiagram
+		peer5->>Server: プレイリストを要求
+		Server-->>peer5: プレイリストを取得
+		peer5->>peer5: プレイリストを解析
+		peer5->>Server: JSONファイルを要求
+		Server-->>peer5: JSONファイルを取得
+		loop チャンクがなくなるまで
+		peer5->>peer5: JSONファイルをもとに<br>チャンクのURLを変更
+		alt JSON[URL] is Server
+		peer5->>Server: チャンクを要求
+		Server-->>peer5: チャンクを取得
+		else else
+		peer5->>peer8: チャンクを要求
+		peer8->>peer8: bufferからチャンクを<br>取り出し
+		peer8-->>peer5: チャンクを取得（バイナリデータ）
+		peer5->>peer5: createObjectURLでURLを発行
+		peer5->>peer5: チャンクを要求 and 取得
+		end
+		peer5->>peer5: 受け取ったチャンクを<br>bufferに格納
+		end
+	</div>
+	<h2>変更（サーバ編）</h2>
+	<hr>
+	<div class="mermaid">
+		sequenceDiagram
+		peer5->>Server: プレイリストを要求
+		Server-->>peer5: プレイリストを取得
+		peer5->>peer5: プレイリストを解析
+		peer5->>Server: JSONファイルを要求
+		Server-->>peer5: JSONファイルを取得
+		Note left of peer5 : "URL":"Server"<br>"tsFileName": "Ts001.ts"<br>"dirName":"PlayList1"
+		loop チャンクがなくなるまで
+		peer5->>peer5: JSONファイルをもとに<br>チャンクのURLを変更
+		alt JSON[URL] is Server
+		Note left of peer5 : "./Ts001.ts"<br>↓<br>"./PlayList1/Ts001.ts"
+		peer5->>Server: チャンクを要求
+		Server-->>peer5: チャンクを取得
+		else else
+		peer5->>peer8: チャンクを要求
+		peer8->>peer8: bufferからチャンクを<br>取り出し
+		peer8-->>peer5: チャンクを取得（バイナリデータ）
+		peer5->>peer5: createObjectURLでURLを発行
+		peer5->>peer5: チャンクを要求 and 取得
+		end
+		peer5->>peer5: 受け取ったチャンクを<br>bufferに格納
+		end
+	</div>
+	<h2>変更（ピア編）</h2>
+	<hr>
+	<div class="mermaid">
+		sequenceDiagram
+		peer8->>Server: プレイリストを要求
+		Server-->>peer8: プレイリストを取得
+		peer8->>peer8: プレイリストを解析
+		peer8->>Server: JSONファイルを要求
+		Server-->>peer8: JSONファイルを取得
+		Note left of peer8 : "URL":"Peer5"<br>"tsFileName": "Ts001.ts"<br>
+		loop チャンクがなくなるまで
+		peer8->>peer8: JSONファイルをもとに<br>チャンクのURLを変更
+		alt JSON[URL] is Server
+		peer8->>Server: チャンクを要求
+		Server-->>peer8: チャンクを取得
+		else else
+		peer8->>peer5: チャンクを要求
+		peer5->>peer5: bufferからチャンクを<br>取り出し
+		peer5-->>peer8: チャンクを取得（バイナリデータ）
+		peer8->>peer8: createObjectURLでURLを発行
+		Note left of peer8 : "./Ts001.ts"<br>↓<br>発行したURL
+		peer8->>peer8: チャンクを要求 and 取得
+		end
+		peer8->>peer8: 受け取ったチャンクを<br>bufferに格納
+		end
+	</div>
+</body>
+
+</html>
