@@ -54,7 +54,7 @@ function newHls() {
 
 					//peerなら
 					if (USERJSON[count].URL != "Server") {
-						
+
 						peer.listAllPeers(peers => {
 							console.log(peers)
 						});
@@ -88,7 +88,7 @@ function newHls() {
 
 		function onLevelLoaded(event, data) {
 			var level_duration = data.details;
-			//console.log(level_duration)
+			console.log(level_duration)
 		}
 		// subscribe event
 		hls.on(Hls.Events.LEVEL_LOADED, onLevelLoaded);
