@@ -63,6 +63,7 @@ function newHls() {
 						PeerDataSendFunction([USERJSON[count].URL, USERJSON[count].tsFileName, id])
 							.then(function () {
 								context.url = sessionStorage.getItem(USERJSON[count].tsFileName)
+								console.log(USERJSON[count].URL,"からのロードが完了したよ",context.frag.relurl)
 								load(context, config, callbacks);
 							})
 					}
@@ -100,6 +101,6 @@ function newHls() {
 		// subscribe event
 		//hls.on(Hls.Events.LEVEL_LOADED, onLevelLoaded);
 		//hls.on(Hls.Events.LEVEL_PTS_UPDATED, onLevelLoaded);
-		hls.on(Hls.Events.FRAG_LOADED , onBufferLoaded);
+		//hls.on(Hls.Events.FRAG_LOADED , onBufferLoaded);
 	}
 };

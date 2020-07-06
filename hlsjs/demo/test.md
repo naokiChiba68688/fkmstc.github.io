@@ -21,6 +21,7 @@ sequenceDiagram
 		peer8->>peer8: createObjectURLでURLを発行
 		Note left of peer8 : "./Ts001.ts"<br>↓<br>発行したURL
 		peer8->>peer8: チャンクを要求 and 取得
+		peer8->>Server: チャンクを<br>要求した事をメモ
 		end
 		peer8->>peer8: 受け取ったチャンクを<br>bufferに格納
 		end
