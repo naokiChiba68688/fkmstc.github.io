@@ -15,4 +15,4 @@
 ### ローカルの場合
 1.サイトを開きます。  
 この時、**タブ**ではなく**ウインドウ**で開いてください。  
-<img width="500" alt="Window" src="./image/window.png">
+<img width="500" alt="Window" src="./image/Window.png">
