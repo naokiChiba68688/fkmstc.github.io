@@ -38,7 +38,8 @@ function newHls() {
 							var onSuccess = callbacks.onSuccess;
 							callbacks.onSuccess = function (response, stats, context) {
 								//DOM表示
-								$("#info").html($("#info").html() + `Server:${USERJSON[count].dirName[13]}  ${USERJSON[count].tsFileName.substr(7, 12)}` + "<br>")
+								//$("#info").html($("#info").html() + `Server:${USERJSON[count].dirName[13]}  ${USERJSON[count].tsFileName.substr(8, 12)}` + "<br>")
+								$("#info").html($("#info").html() + `Server:${USERJSON[count].tsFileName.substr(8, 12)}` + "<br>")
 								//Server:1            ts_00x.ts
 
 								//サーバから受け取った動画データ(response.data)に対しURLを発行 sessionストレージに保存

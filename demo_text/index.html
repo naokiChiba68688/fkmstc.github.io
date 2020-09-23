@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <input type="text" id="text">
+    <button id="button" onclick="send()">逝信</button>
+    <div style="background-color: #EEEEEE;
+                height: 500px;
+                width: 200px;" id="texterea">
+
+    </div>
+</body>
+<script>
+    function send() {
+        $("#texterea").html($("#texterea").html() + "<br>" + $("#text").val());
+        $("#text").val("")
+    }
+
+    const WakeUp = {
+        Alarm: new Date('07:00:00'),
+        goOff() {
+            if (this.Alarm === Date.now()) {
+                return "Asa"
+            } else {
+                return "AsaDeha naiyo"
+            }
+            return "returnsityau";
+        }
+    }
+    WakeUp.goOff()
+    console.log("\n")
+    console.log(WakeUp.goOff())
+</script>
+
+</html>
