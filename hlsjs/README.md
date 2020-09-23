@@ -38,6 +38,10 @@ hls.jsは始めにプレイリスト(m3u8ファイル)を取得しに来ます�
 その後、そのプレイリストをもとにサーバから動画をダウンロード、バッファに格納していきます。  
 
 hls.jsの導入は簡単で、[Doc](https://github.com/video-dev/hls.js/blob/master/docs/API.md#first-step-setup-and-support)や[公式のGitHubのページ](https://github.com/video-dev/hls.js#getting-started)を参照すれば比較的簡単に導入できます。  
-対応する箇所は[この部分](./demo/js/editHLSjs.js#L81-L89)になります。
+対応するコードは[この部分](./demo/js/editHLSjs.js#L81-L89)になります。  
+特記する点は無いですが、後述する「チャンクの受信先を動的に変更する」機能を設定（オーバーライド）するのは、[ここ](https://github.com/fkmstc/fkmstc.github.io/blob/master/hlsjs/demo/js/editHLSjs.js#L84)で割り当てられています。  
+<br>
+hls.jsにはチューニング機能として、ライブラリの一部機能を上書き(オーバーライド)[出来ます](https://github.com/video-dev/hls.js/blob/master/docs/API.md#fine-tuning)。  
+その中の[loader](https://github.com/video-dev/hls.js/blob/master/docs/API.md#loader)や[pLoader](https://github.com/video-dev/hls.js/blob/master/docs/API.md#ploader)を参考に実現しています。
 
 ### SkyWay
