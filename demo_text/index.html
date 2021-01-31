@@ -9,34 +9,42 @@
 </head>
 
 <body>
+    
     <input type="text" id="text">
-    <button id="button" onclick="send()">逝信</button>
+    <button id="button" onclick="send()">送信</button>
     <div style="background-color: #EEEEEE;
-                height: 500px;
+                height: 60px;
                 width: 200px;" id="texterea">
 
     </div>
+    <button id="button" onclick="openmsg()">アラート</button><br>
+    
+    <image id="imageDog" src="./1.jpg"><br>
+    <button onclick="nextImag()">次の画像</button><br>
+
 </body>
 <script>
-    function send() {
-        $("#texterea").html($("#texterea").html() + "<br>" + $("#text").val());
-        $("#text").val("")
+    function nextImag(){
+        let img = document.getElementById("imageDog")
+        img.src = "./2.jpg";
     }
 
-    const WakeUp = {
-        Alarm: new Date('07:00:00'),
-        goOff() {
-            if (this.Alarm === Date.now()) {
-                return "Asa"
-            } else {
-                return "AsaDeha naiyo"
-            }
-            return "returnsityau";
-        }
+    function send() {
+        $("#texterea").html($("#texterea").html() + $("#text").val() + "<br>");
+        $("#text").val("")
     }
-    WakeUp.goOff()
-    console.log("\n")
-    console.log(WakeUp.goOff())
+    function openmsg(){
+        window.alert( "アラートの表示" ) ;
+    }
+
+    let hensu1 = 0;
+    let hensu2 = "aiu";
+
+    //console.log(hensu1);
+    //console.log(hensu2);
+
+    console.log("9" + 1);
+    console.log("9" - 1);
 </script>
 
 </html>

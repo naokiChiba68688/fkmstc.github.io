@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TODOリスト</title>
+    <style>
+        html {
+            background-color: rgb(240, 240, 240);
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="getJson()">Jsonをダウンロード</button>
+
+        <script>
+            function getJson() {
+                // APIからJSONを取得する
+                fetch('./api/v1/list')
+                    .then((response) => response.json())
+                    .then((todoList) => {
+                        console.log("ダウンロード完了");
+                    })
+            }
+        </script>
+</body>
+
+</html>
