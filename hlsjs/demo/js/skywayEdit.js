@@ -12,7 +12,7 @@ function  PeerDataReceiveFunction(){
 		//[0:tsファイル名,1:データが欲しいと言ったpeerID]
 		dataConnection.on('data', data => {
 			//DOM表示
-			$("#info").html($("#info").html() + data[1] + "へ" + data[0].substr( 7, 12 ) + "を送信<br>");
+			$("#info").html($("#info").html() + data[1] + "へ" + data[0].substr( 8, 12 ) + "を送信<br>");
 
 			var xhr = new XMLHttpRequest();
 			xhr.open("GET", sessionStorage.getItem(data[0]));
@@ -61,7 +61,7 @@ function PeerDataSendFunction(data) {
 			var url = URL.createObjectURL(blob);
 			sessionStorage.setItem(data[0], url);
 			//DOM操作
-			$("#info").html($("#info").html() + data[2] + ":" + data[0].substr( 7, 12 ) + "<br>");
+			$("#info").html($("#info").html() + data[2] + ":" + data[0].substr( 8, 12 ) + "<br>");
 			
 			//終わったよっていう信号
 			resolve();
