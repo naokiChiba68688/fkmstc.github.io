@@ -41,6 +41,8 @@
 
     //skyway用のID
     var id;
+
+    var num = 0;
     //idをセット
     function setMyID() {
         id = $("#input-my-id").val()
@@ -48,8 +50,19 @@
 
 
         //skywayをセット
-        peer = new Peer(id, { key: '12811376-9405-4d0c-bc52-1c95a4f4703f', debug: 3 });
+        peer = new Peer(id, { key: '12811376-9405-4d0c-bc52-1c95a4f4703f', debug: 0 });
         PeerDataReceiveFunction();
+
+        /*
+        peer.on('error', function (e) {
+            if (e.type == "peer-unavailable") {
+                num += 1;
+                if(num => 3){
+                    num = 0;
+                }
+            }
+        })
+        */
 
         //tsファイルを探すカウントアップを初期化、DOM表示も初期化
         count = 0;
@@ -58,6 +71,9 @@
         //idに対応したjsonファイルを取得
         $.getJSON(`./json/${id}.json`, function (data) {
             USERJSON = data;
+
+            //console.log(USERJSON)
+
             //hlsjsの設定へ -> editHLSjs
             peer.on('open', function () {
                 newHls()
